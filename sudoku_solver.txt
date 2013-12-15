@@ -5,7 +5,6 @@ const int size = 9;
 int store;
 int array[size][size];
 
-//int array_1[size][size];
 
 bool check_row(int,int);
 bool check_col(int,int);
@@ -15,7 +14,7 @@ void traverse(int,int);
 void printarray();
 void printarray_1();
 void do_not_modify();
-//void solve(int,int);
+
 
 bool check_row(int value,int row)
 {
@@ -58,30 +57,7 @@ bool check_3d(int value,int row,int column)
     return true;
 }
 
-/*void do_not_modify()
-{
-    for(int row = 0;row<size;row++)
-    {
-        for(int col = 0;col<size;col++)
-        {
-            if(array[row][col]!=0) //if its not zero in the original array
-            //then put a -1 at that same spot in the secobnd array. This is to make sure
-            //that the original array is not modified.
-            {
-                array_1[row][col] = -1;
-            }
-        }
-    }
-}*/
 
-/*bool isempty(int row,int col)
-{
-    if(array[row][col]!=0)
-    {
-        col++;
-    }
-    return false;
-}*/
 
 void traverse(int row,int col)
 {
@@ -96,93 +72,35 @@ void traverse(int row,int col)
 }
 void solution(int row, int col)
 {
-    //int value = 1;
     int found = 0;
-      //int x;
-
-    //int col=0;
-
-   /* while(array_1[row][col]==-1)
-    {
-        col++;
-
-    if(col>8) //if you are not at the end of the matrix
-    {
-        col = 0;
-        row++;
-        //found = solution(row,col);
-       // return found;
-    }
-
-    else if(col<8)
-    {
-        col++;
-    }*/
+   
 
     if(row>8)
     {
         printarray();
         return;
     }
-    //}
-
-
-
-
-    /*if(row==9)
-    {
-        printarray();
-        found = 1;
-        return found;
-    }*/
-
-
-
-    //{
-        //for(int row = 0;row<size;row++)
-        //{
-            //for(int col = 0;col<size;col++)
     if(array[row][col]!=0) //then move on to the next spot
     {
         traverse(row,col);
     }
     else
     {
-    for(int value = 1;value<=9;value++)
+        for(int value = 1;value<=9;value++)
         {
            if(check_row(value,row)&&check_col(value,col)&&check_3d(value,row,col))
-            //check if value is legitimate
             {
-                //x = array[row][col];
                 array[row][col] = value;
-                //nextrow = row;
-                //nextcolumn = col+1;
 
-            found = 1;
-            traverse(row,col);
-            //col++;
-            //cout<<"The spot is "<<value<<"at"<<row<<" and "<<col<<endl;
-             /*if(col==8)
-             {
-                solution(row+1,col);
-             }
-             else
-             {
-                 solution(row,col+1);
-             }
-             array[row][col] = x;*/
-          /* if ( found==1 )
-                break;
-            }*/
+                found = 1;
+                traverse(row,col);
+            }
+            
         }
-//return false;
-        }
-        //}
-    //}
-    //return found;
-    array[row][col] = 0;
+        array[row][col] = 0;
     }
-    }
+}
+ 
 
 
 void printarray()
@@ -204,16 +122,8 @@ int main()
 {
     array[size][size]={0};
 
-    //array_1[size][size]={0};
-
     cout<<"Specify the problem"<<endl;
     {
-        /*for(int i=0;i<size;i++)
-        for(int j =0; j<size;j++)
-        {
-            cout<<"Please enter an element in the array or enter zero to skip"<<endl;
-            cin>>array[i][j];
-        }*/
         array[0][0] = 5;
         array[0][1] = 3;
         array[0][4] = 7;
@@ -246,20 +156,11 @@ int main()
         array[8][8] = 9;
 
     }
-    //do_not_modify();
-    //int col = 0;
+    
     cout<<"Initial puzzle"<<endl;
     printarray();
     cout<<endl;
     cout<<"Final output"<<endl<<endl;
-    //for(int m = 0; m<size;m++)
-    //{
-    //for(int row = 0;row<size;row++)
-    //{
-        solution(0,0);
-    //}
-        //printarray();
-        //printarray_1();
-    //}
+    solution(0,0);
     return 0;
 }
